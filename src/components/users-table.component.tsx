@@ -22,9 +22,12 @@ type UsersTableProps = {
  * @returns {JSX.Element} the JSX element representing the users table component.
  */
 const UsersTable: React.FC<UsersTableProps> = ({ users, setUsers, setSelectedUser, setIsEditing }) => {
+  const [selectedUserId, setSelectedUserId] = React.useState<string>("");
+
   const handleEdit = (user: User) => {
     setSelectedUser({ ...user });
     setIsEditing(true);
+    setSelectedUserId(user.id);
   };
 
   /**
@@ -39,6 +42,10 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, setUsers, setSelectedUse
     setSelectedUser({ id: "", name: "", email: "", phone: "", gender: "male" });
     setIsEditing(false);
   };
+
+  React.useEffect(() => {
+    setSelectedUserId("");
+  }, [users]);
 
   return (
     <section id="user-table-container">
@@ -56,7 +63,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, setUsers, setSelectedUse
         <tbody>
           {Object.keys(users).length > 0 ? (
             Object.entries(users).map(([id, user]) => (
-              <tr key={id}>
+              <tr key={id} className={selectedUserId === id ? "row-selected" : ""}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.phone}</td>
