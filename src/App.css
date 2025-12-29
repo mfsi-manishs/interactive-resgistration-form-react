@@ -1,10 +1,80 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+tbody tr td > button.edit-btn,
+tbody tr td > button.delete-btn {
+  text-align: center !important;
 }
 
-.card {
-  padding: 2em;
+button.edit-btn,
+button.delete-btn {
+  width: 80%;
+}
+
+/* Individual sections */
+#user-form-container,
+#user-table-container {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+/* Width control */
+#user-form-container {
+  flex: 1;
+  max-width: 350px;
+}
+
+#user-table-container {
+  flex: 2;
+  overflow-x: auto;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  #app-content {
+    flex-direction: column;
+  }
+
+  #user-form-container,
+  #user-table-container {
+    max-width: 100%;
+    overflow: auto;
+  }
+
+  #user-table-container table {
+    table-layout: auto;
+  }
+
+  #user-table-container td:nth-child(1) {
+    min-width: 10rem;
+    max-width: 15rem;
+    word-wrap: anywhere;
+  }
+
+  #user-table-container td:nth-child(2) {
+    min-width: 10rem;
+    max-width: 15rem;
+    word-wrap: anywhere;
+  }
+
+  #user-table-container td:nth-child(3) {
+    min-width: 5rem;
+    max-width: 10rem;
+    word-wrap: anywhere;
+  }
+
+  #user-table-container td:nth-child(4) {
+    min-width: 5rem;
+    max-width: 10rem;
+    word-wrap: anywhere;
+  }
+
+  #user-table-container td:nth-child(5) {
+    min-width: 4rem;
+    max-width: 10rem;
+  }
+
+  #user-table-container td:nth-child(6) {
+    min-width: 5rem;
+    max-width: 10rem;
+  }
 }
