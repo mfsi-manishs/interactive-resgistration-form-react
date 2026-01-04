@@ -15,6 +15,15 @@ export const ERROR_MESSAGES = {
 export const MESSAGES = {
   CONFIRM_DEL_USER_MSG: "Are you sure you want to delete this user?",
   NO_USERS_MSG: "No users found. Please add a new user.",
+  FETCHING_USERS: "Fetching users...",
+  USERS_FETCHED_SUCCESS: "Users fetched successfully",
+  USER_ADDED_SUCCESS: "User added successfully",
+  USER_UPDATED_SUCCESS: "User updated successfully",
+  USER_DELETED_SUCCESS: "User deleted successfully",
+  FAILED_TO_FETCH_USERS: "Failed to fetch users",
+  FAILED_TO_ADD_USER: "Failed to add user",
+  FAILED_TO_UPDATE_USER: "Failed to update user",
+  FAILED_TO_DELETE_USER: "Failed to delete user",
 };
 
 export const UI_STRINGS = {

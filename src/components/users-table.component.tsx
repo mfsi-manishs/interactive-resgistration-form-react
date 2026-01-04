@@ -6,12 +6,15 @@
 import React from "react";
 import { MESSAGES, UI_STRINGS } from "../constants";
 import type { User, UsersRecord } from "../models/user.model";
+import { deleteUser } from "../services/api";
+import type { ToastMessage } from "./toast.component";
 
 type UsersTableProps = {
   users: UsersRecord;
   setUsers: React.Dispatch<React.SetStateAction<UsersRecord>>;
   setSelectedUser: React.Dispatch<React.SetStateAction<User>>;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+  showToast: (toastMessage: ToastMessage | null) => void;
 };
 
 /**
@@ -21,7 +24,7 @@ type UsersTableProps = {
  * @param {UsersTableProps} props - the props object containing the users, setUsers, setSelectedUser, and setIsEditing functions.
  * @returns {JSX.Element} the JSX element representing the users table component.
  */
-const UsersTable: React.FC<UsersTableProps> = ({ users, setUsers, setSelectedUser, setIsEditing }) => {
+const UsersTable: React.FC<UsersTableProps> = ({ users, setUsers, setSelectedUser, setIsEditing, showToast }) => {
   const [selectedUserId, setSelectedUserId] = React.useState<string>("");
 
   const handleEdit = (user: User) => {
@@ -34,13 +37,19 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, setUsers, setSelectedUse
    * Handles the deletion of a user by confirming with the user and then updating the users record.
    * @param {User} user - the user to delete
    */
-  const handleDelete = (user: User) => {
+  const handleDelete = async (user: User) => {
     if (!window.confirm(MESSAGES.CONFIRM_DEL_USER_MSG)) return;
-    const updatedUsers = { ...users };
-    delete updatedUsers[user.id];
-    setUsers(updatedUsers);
-    setSelectedUser({ id: "", name: "", email: "", phone: "", gender: "male" });
-    setIsEditing(false);
+    try {
+      await deleteUser(user);
+      const updatedUsers = { ...users };
+      delete updatedUsers[user.id];
+      setUsers(updatedUsers);
+      setSelectedUser({ id: "", name: "", email: "", phone: "", gender: "male" });
+      setIsEditing(false);
+      showToast({ toastType: "success", message: MESSAGES.USER_DELETED_SUCCESS });
+    } catch (error) {
+      showToast({ toastType: "error", message: MESSAGES.FAILED_TO_DELETE_USER });
+    }
   };
 
   React.useEffect(() => {

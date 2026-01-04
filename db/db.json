@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": "1767114000",
+      "name": "Manish Sharma",
+      "email": "manishsharma@email.com",
+      "phone": "9988000011",
+      "gender": "male"
+    },
+    {
+      "id": "1767114010",
+      "name": "Jim Carrey",
+      "email": "jimcarey@email.com",
+      "phone": "9988000022",
+      "gender": "male"
+    },
+    {
+      "id": "1767114020",
+      "name": "Mille Bobby Brown",
+      "email": "millebobbybrown@gmail.com",
+      "phone": "9988000033",
+      "gender": "female"
+    },
+    {
+      "id": "1767114030",
+      "name": "Elliot Page",
+      "email": "elliotpage@email.com",
+      "phone": "9988000044",
+      "gender": "others"
+    }
+  ]
+}
